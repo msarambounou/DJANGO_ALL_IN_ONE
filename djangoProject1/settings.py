@@ -79,10 +79,10 @@ WSGI_APPLICATION = "djangoProject1.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_all_in_one',
-        'USER': 'root',
-        'PASSWORD': 'Alimnee.1',
-        'HOST': 'localhost',
+        'NAME': 'itsmamssb$myfirstdatabase',
+        'USER': 'itsmamssb',
+        'PASSWORD': 'Alimnee.216622',
+        'HOST': 'itsmamssb.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
