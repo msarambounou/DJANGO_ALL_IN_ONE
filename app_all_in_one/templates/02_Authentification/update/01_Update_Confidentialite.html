@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Modifier min compte</title>
+        {% load static %}
+        {% include '00_Ressources/sheet1.html' %}
+    </head>
+
+    <header>
+        {% include '01_Layout/header.html' %}
+    </header>
+
+    <body style="background-color: rgba(239,239,239,0.84)">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100" class="container py-5 h-100" style="padding-top: 10%; padding-bottom: 5%">
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; padding-left: 5%; padding-right: 5%; padding-bottom: 5%; padding-top: 2%; background-color: white">
+                    <h2 style="text-align: center">MODIFIER</h2>
+                    </br>
+                    <img src="{%static "image/authentification/update_user.png" %}" class="img-fluid" alt="Phone image" style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
+                        <!-- MESSAGE -->
+                    <form action="#" method="POST" style="padding-top: 10%"> {% csrf_token %}
+
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <input type="text" class="form-control" name="new_lastname" placeholder="Entrez votre nouveau nom" value="{{ user.last_name }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Prenom</label>
+                            <input type="text" class="form-control" name="new_firstname" placeholder="Entrez votre nouveau prenom"  value="{{ user.first_name }}" required>
+                        </div>
+
+                        </br>
+
+                        <!-- MESSAGE -->
+
+                        <button type="submit" style="width: 100%" class="btn btn-primary">Modifier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <footer>
+        {% include '01_Layout/footer.html' %}
+    </footer>
+
+</html>
+
+

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+
+    <a class="navbar-brand" href="/"><h1>ALL IN ONE</h1></a>
+
+    <div class="collapse navbar-collapse">
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="/gerer_mes_entreprises/">Réseaux sociaux</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="/gerer_ma_smart_business_card/">Business Card</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="/nos_abonnement/">Abonnement</a>
+                </li>
+
+                <!--<li class="nav-item">
+                    <a class="nav-item nav-link" href="/nos_abonnement2/">Abonnement 2</a>
+                </li>-->
+
+                <!--<li class="nav-item">
+                    <a class="nav-item nav-link" href="/nos_produits/">Nos produits</a>
+                </li>-->
+           </ul>
+
+            <div style="float: right;">
+                <a href="/mon_compte/"><button type="button" class="btn btn-primary" style="margin-right: 15px"><ion-icon name="person-outline"></ion-icon> {{ user.first_name }}</button></a>
+                <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger" style="margin-right: 15px"><ion-icon name="log-out-outline"></ion-icon> Se deconnecter</button></a>
+            </div>
+
+        {% else %}
+            <div>
+                <a href="/inscription/"><button type="button" class="btn btn-primary" style="margin-right: 15px"><ion-icon name="person-add-outline"></ion-icon> S'inscrire</button></a>
+                <a href="/connexion/"><button type="button" class="btn btn-outline-success" style="margin-right: 15px"><ion-icon name="log-in-outline"></ion-icon> Se connecter</button></a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

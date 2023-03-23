@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Gerer ma smart card</title>
+        {% load static %}
+        {% include '00_Ressources/sheet1.html' %}
+    </head>
+
+    <header>
+        {% include '01_Layout/header.html' %}
+    </header>
+
+    <body>
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex align-items-center justify-content-center h-100" class="container py-5 h-100">
+                    <!--<div class="col-md-8 col-lg-7 col-xl-6">
+                        {% load static %} <img src="{%static "image/inscription.jpg" %}" class="img-fluid" alt="Phone image">
+                    </div>-->
+                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; margin-left: 5%; margin-right: 5%; margin-bottom: 5%; margin-top: 10%; background-color: white; padding : 3% 3% 3% 3%">
+                    <h3 style="text-align: center">Modification</h3>
+                        </br>
+                        <!-- MESSAGE -->
+                        <form action="/modifier_entreprise/{{ entreprise.id }}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nom de l'entreprise</label>
+                                    <input type="text" class="form-control" name="name_entreprise" placeholder="Veuillez entrez le nom de l'entreprise" value="{{ entreprise.nom_entreprise }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Secteur</label>
+                                    <select class="custom-select" name="secteur" value="{{ entreprise.secteur }}" required>
+                                        <option selected>{{ entreprise.secteur }}</option>
+                                        {% for this_secteur in all_secteur %}
+                                            <option>{{ this_secteur.libelle_secteur }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <button style="width: 100%" type="submit" class="btn btn-primary">Modifier</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+
+    <footer>
+        {% include '01_Layout/footer.html' %}
+    </footer>
+</html>
+
+
+<script>
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+</script>

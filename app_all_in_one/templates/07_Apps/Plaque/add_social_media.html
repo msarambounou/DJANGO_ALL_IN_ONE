@@ -1,0 +1,92 @@
+<form action="/ajouter_reseau_social_plaque/{{ id_entreprise }}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    <div class="form-group">
+        <label>Réseau social</label>
+        <select class="custom-select" name="name" onchange="showInput(this.value)" required>
+            <option value="choix">Choissiez un reseau social</option>
+            {% for social_media in all_social_media %}
+                <option value="{{ social_media.name }}">{{ social_media.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group" id="input_link_container" style="display: none;">
+        <label>Lien</label>
+        <input type="text" class="form-control" name="link" placeholder="Veuillez entrez le lien">
+    </div>
+
+    <div class="form-group" id="input_email_container" style="display: none;">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Entrez votre email">
+    </div>
+
+    <div id="input_number_container" style="display: none;">
+        <label for="phone">Numéro de téléphone :</label>
+        </br>
+        <small style="color: red">Ecrivez direcetement le numéro sans l'indicateur</small>
+        </br>
+        <div class="input-group">
+            <div class="input-group-prepend" style="width: 30%">
+                <select class="custom-select" id="country-code" name="country">
+                    <option value="00223">Mali (+223)</option>
+                    <option value="0033">France (+33)</option>
+                    <option value="3">Etat-Unis</option>
+              </select>
+            </div>
+            <input type="tel" style="width: 70%" id="phone-number" name="phone_number" maxlength="3">
+        </div>
+        </br>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+</form>
+
+<script>
+    function showInput(value) {
+        if (value === "choix"){
+            document.getElementById("input_number_container").style.display = "none";
+            document.getElementById("input_link_container").style.display = "none";
+            document.getElementById("input_email_container").style.display = "none";
+        }
+        else if (value === "WhatsApp" ) {
+          document.getElementById("input_number_container").style.display = "block";
+          document.getElementById("input_link_container").style.display = "none";
+          document.getElementById("input_email_container").style.display = "none";
+
+        } else if (value === "Email" ) {
+          document.getElementById("input_email_container").style.display = "block";
+          document.getElementById("input_number_container").style.display = "none";
+          document.getElementById("input_link_container").style.display = "none";
+
+        }
+
+        else {
+            document.getElementById("input_email_container").style.display = "none";
+            document.getElementById("input_number_container").style.display = "none";
+            document.getElementById("input_link_container").style.display = "block";
+        }
+    }
+
+    const countryCodeSelect = document.getElementById("country-code");
+    const phoneNumberInput = document.getElementById("phone-number");
+
+    // Fonction pour mettre à jour la longueur maximale de l'input
+    function updatePhoneNumberMaxLength() {
+        const countryCode = countryCodeSelect.value;
+        if (countryCode === "00223") {
+            phoneNumberInput.maxLength = 8; // MALI
+        } else if (countryCode === "00033") {
+            phoneNumberInput.maxLength = 10; // FRANCE
+        } else if (countryCode === "0033") {
+            phoneNumberInput.maxLength = 9; // ex
+        } else {
+          phoneNumberInput.maxLength = 20; // Autres pays
+        }
+    }
+
+  // Écouter les événements de changement de la liste déroulante
+    countryCodeSelect.addEventListener("change", updatePhoneNumberMaxLength);
+
+  // Mettre à jour la longueur maximale initiale lors du chargement de la page
+    updatePhoneNumberMaxLength();
+</script>

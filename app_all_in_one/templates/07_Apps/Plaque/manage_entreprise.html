@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Gerer ma smart card</title>
+        {% load static %}
+        {% include '00_Ressources/sheet1.html' %}
+        {% include '03_Modal/add_entreprise.html' %}
+    </head>
+
+    <header>
+        {% include '01_Layout/header.html' %}
+    </header>
+
+    <body>
+        <div style="margin-left: 2%; margin-top: 8%; margin-right: 2%; padding-bottom: 5%">
+            <h1><ion-icon name="business-outline"></ion-icon> Gérer mes entreprises</h1>
+
+
+            <!--<p>Ajouter TOOLTIP</p>-->
+            {% if len_entreprises < 3 %}
+                <div style="margin-top: 3%; display: block; margin-left: auto; margin-right: auto;">
+                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#modal_add_ets">Ajouter une entreprise</button>
+                </div>
+            {% else %}
+
+            {% endif %}
+        </div>
+
+        {% if len_entreprises == 0 %}
+            <div style="margin-top: 2%; margin-left: 2%; padding-bottom: 50%">
+                <p style="color: red">Vous n'avez aucun élément</p>
+            </div>
+        {% else %}
+                <div style="width:95%; padding-left:3% ;padding-right:3%; padding-bottom: 20%">
+                    <p>Nombre d'entreprise : {{ len_entreprises }}/3</p>
+                    <table class="table table-hover" width="50%" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Secteur</th>
+                            <th scope="col">Modifier</th>
+                            <th scope="col">Supprimer</th>
+                            <th scope="col">Accéder</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for entreprise in entreprises %}
+                            <tr>
+                                <td>{{ entreprise.nom_entreprise }}</td>
+                                <td>{{ entreprise.secteur }}</td>
+                                <td>
+                                    <a href="/modifier_entreprise/{{ entreprise.id }}"><button type="button" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Modifier"><ion-icon name="create-outline"></ion-icon></button></a>
+                                </td>
+                                <td>
+                                    <a href="/supprimer_entreprise/{{ entreprise.id }}"><button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Supprimer"><ion-icon name="trash-outline"></ion-icon></button></a>
+                                </td>
+                                <td><a href="/gerer_mes_reseaux_sociaux/{{ entreprise.id }}"><button type="button" class="btn btn-outline-dark"><ion-icon name="eye-outline"></ion-icon> Acceder</button></a></td>
+                        {% endfor %}
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        {% endif %}
+    </body>
+
+    <footer>
+        {% include '01_Layout/footer.html' %}
+    </footer>
+</html>

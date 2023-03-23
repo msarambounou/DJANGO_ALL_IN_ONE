@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <div>
+             <img style="display: block; margin-right: auto; margin-left: auto" width="170px;" src="{% static 'image/we/logo_test.png' %}">
+        </div>
+
+        <div style="width: 95%; display: block; margin-left: auto; margin-right: auto">
+            <div style="margin-left: 5%; margin-right: 5%; margin-top:5% ;padding-bottom: 5%; padding-top: 5%">
+
+                <p>Bienvenu, {{ user_name }} !</p>
+
+                </br>
+
+                <p>
+                    Pour bénéficier de toutes les fonctionnalités de <b>ALL IN ONE</b>,
+                    veuillez saisir le code ci-dessous dans le champs prévus de la page de validation de
+                    votre email :
+                </p>
+
+                <div style="background-color: #45b8d3" >
+                    <h1 style="text-align: center">{{ code }}</h1>
+                </div>
+
+                <p>
+                    Ce code est valable 10 minutes. Au-delà, vous pouvez demander le renvoi
+                    d'un code par email directement depuis la page vous demandant de saisir le code ou depuis
+                    la rubrique Mon Compte de l'application.
+                </p>
+
+                <br/>
+
+                <p>L'équipe MY QR-CODE SOLUTIONS</p>
+
+            </div>
+        </div>
+    </body>
+</html>

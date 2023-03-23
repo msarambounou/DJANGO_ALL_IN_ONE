@@ -1,0 +1,7 @@
+{%  if messages %}
+    {%  for msg in messages %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <p style="color: red">{{ msg }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
